@@ -1,0 +1,192 @@
+#+title: PHN311 Assignment 4
+#+author: Adityan S
+
+#+LATEX_CLASS_OPTIONS: [a4paper,11pt,twoside]
+#+LATEX_HEADER: \usepackage{booktabs}
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \usepackage{colortbl}
+#+LATEX_HEADER: \usepackage{siunitx}
+#+LATEX_HEADER: \usepackage{tabu}
+#+LATEX_HEADER: \usepackage{etoolbox}
+#+LATEX_HEADER: \usepackage{pdflscape}
+#+LATEX_HEADER: \usepackage{pgfplots}
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usepackage{nopageno}
+#+LATEX_HEADER: \usepackage{amssymb}
+#+LATEX_HEADER: \usepackage[margin=0.5in]{geometry}
+#+options: tex:t toc:t date:nil
+#+startup: latexpreview
+
+#+begin_export latex
+  \clearpage
+#+end_export
+
+* Occilation
+Consider the one-dimensional motion of a particle of mass $m$ in a time independent potential $V(x)$.Since the energy $E$ is conserved, one can integrate the equation of motion and obtain a solution in a closed form.
+
+\begin{equation}
+t-C = \sqrt{\frac{m}{2}}\int_{x_i}^x \frac{dx}{\sqrt{E-V(x)}}
+\end{equation}
+
+For the choice $C=0$ , the particle is at the position $x_i$ at the time $t = 0$ and $x$ refers to its position at any arbitrary time $t$. Consider a particular case where the particle is in bound motion between twopoints $a$ and $b$ where $V(x) = E$ for $x = a, b$ and $V(x) < E$ for $a < x < b$. The time period of theoscillation $T$ is given by,
+
+\begin{equation}
+T = 2 \sqrt{\frac{m}{2}}\int_{a}^b \frac{dx}{\sqrt{E-V(x)}}
+\end{equation}
+
+
+#+begin_export latex
+\begin{center}
+\begin{tikzpicture}
+\draw[thick] (-2,0) -- (2,0);
+\draw[thick] (-2,-1) -- (-2,1);
+\draw[thick] (2,-1) -- (2,1);
+\draw (2,-1) node [anchor=north]{$x=b$};
+\draw (-2,-1) node [anchor=north]{$x=a$};
+\draw (0,0.5) node {$V(x)<E$};
+\draw (-3,0) node {$V(x)>E$};
+\draw (3,0) node {$V(x)>E$};
+\draw (2,1) node [anchor=south]{$V(x)=E$};
+\draw (-2,1) node [anchor=south]{$V(x)=E$};
+\draw (0,-0.5) node {$A=b-a$};
+\filldraw [black] (0.5,0) circle (2pt);
+\draw[ultra thick, ->] (0.5,0) -- (1.5,0);
+\end{tikzpicture}
+\end{center}
+#+end_export
+
+
+
+** First consider a particle with $m = 1 kg$ in the potential $V(x) = 0.5 \alpha x^2$ with $\alpha =4 kg sec^2$. Numerically calculate the time period of oscillation and check this against the expected value. Verify that the frequency does not depend on the amplitude of oscillation.
+
+
+#+begin_export latex
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[title={Particle with an Energy of 100J}, axis lines=left, xlabel=$x$, ylabel=$V(x)$]
+\addplot[domain=-10:10, samples=200, thick, red] {4*x^2};
+\addlegendentry{$V(x)=0.5\alpha x^2$};
+\addplot[domain=-10:10, samples=200, thick, blue] {100};
+\addlegendentry{$E = 100J$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+#+end_export
+
+From the above plot, we infer that the for a value of Energy $E$, the particle is bound for specifc values of $a$ and $b$ (decided by $E$).
+
+\begin{equation}
+E = V(a)=V(b) = 2x^2
+\end{equation}
+
+\begin{equation}
+ \implies a = -\sqrt{\frac{E}{2}} = -\frac{A}{\sqrt{2}}, \quad b = +\sqrt{\frac{E}{2}} = +\frac{A}{\sqrt{2}}
+\end{equation}
+
+Hence Amplitude of occilation is a function of Energy.
+
+\begin{equation}
+A(E) = b-a = \sqrt{E}
+\end{equation}
+
+#+begin_export latex
+  \clearpage
+#+end_export
+
+Using (4), (5) in (2), the alalytic solution,
+
+
+\begin{equation}
+T = \sqrt{2}\int_{-\frac{A}{\sqrt{2}}}^{+\frac{A}{\sqrt{2}}} \frac{dx}{\sqrt{A^2-2x^2}} = sin^{-1}{\Big(\frac{\sqrt{2}x}{A}\Big)} \Big|_{-\frac{A}{\sqrt{2}}}^{+\frac{A}{\sqrt{2}}} = \pi \quad (sec)
+\end{equation}
+
+Using integral identities, (6) can be written as,
+
+\begin{equation}
+T = \sqrt{2}\int_{-\frac{A}{\sqrt{2}}}^{+\frac{A}{\sqrt{2}}} \frac{dx}{\sqrt{A^2-2x^2}}
+\end{equation}
+
+Let us solve the above numerically for different Amplitudes,
+
+#+begin_src f90 :tangle ./src/occilation1.f90 :exports code
+program occilation1
+  use mods
+  real(dp) :: A(200), T(200), xi(6), wi(6), f, x
+  f(x) = x**2
+  call gauss_legendre(xi, wi)
+  integ = sum(wi*f(xi))
+  call linspace(-10._dp, 10._dp, A)
+  print *, integ
+end program occilation1
+#+end_src
+
+#+begin_src sh :exports both
+make occilation1
+#+end_src
+
+#+RESULTS:
+
+
+#+begin_export latex
+  \clearpage
+#+end_export
+
+
+* Modules
+
+Module =mods= consists of all subroutines, variables and procedures that are used in this report. The codeblocks below are all part of the file =mods.f90=
+
+#+begin_src f90 :tangle ./src/mods.f90 :exports code
+module mods
+  use, intrinsic :: iso_fortran_env, only: dp => real64
+  use stdlib_quadrature, only: gauss_legendre
+  implicit none
+  contains
+#+end_src
+
+Linspace Subroutine for creating an array(sequence) with the equal step value.
+
+#+begin_src f90 :tangle ./src/mods.f90 :exports code
+subroutine linspace(from, to, array)
+  real(dp), intent(in) :: from, to
+  real(dp), intent(out) :: array(:)
+  real(dp) :: range
+  integer :: n, i
+  n = size(array)
+  range = to - from
+  if (n == 0) return
+  if (n == 1) then
+     array(1) = from
+     return
+  end if
+  do i=1, n
+     array(i) = from + range * (i - 1) / (n - 1)
+  end do
+end subroutine linspace
+#+end_src
+
+N-point Gauss Legendre Quadrature
+
+
+#+begin_src f90 :tangle ./src/mods.f90 :exports code
+!working method using stdlib_quadrature
+
+!integer, parameter :: N
+!real(dp), dimension(N) :: x, w
+!call gauss_legendre(x, w)
+!integ = sum(w*f(x))
+#+end_src
+
+End of module =mods=
+
+#+begin_src f90 :tangle ./src/mods.f90 :exports code
+end module mods
+#+end_src
+
+
+#+begin_export latex
+  \clearpage
+#+end_export
+
+* Makefile
+
