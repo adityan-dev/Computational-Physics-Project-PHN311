@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{!working method using stdlib\PYGZus{}quadrature}
+
+\PYG{c}{!integer, parameter :: N}
+\PYG{c}{!real(dp), dimension(N) :: x, w}
+\PYG{c}{!call gauss\PYGZus{}legendre(x, w)}
+\PYG{c}{!integ = sum(w*f(x))}
+\end{Verbatim}

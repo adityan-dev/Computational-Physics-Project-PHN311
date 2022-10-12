@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{module }\PYG{n}{mods}
+\PYG{+w}{  }\PYG{k}{use}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{intrinsic}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{iso\PYGZus{}fortran\PYGZus{}env}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{only}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{dp}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n}{real64}
+\PYG{+w}{  }\PYG{k}{use }\PYG{n}{stdlib\PYGZus{}quadrature}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{only}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{gauss\PYGZus{}legendre}
+\PYG{+w}{  }\PYG{k}{implicit none}
+\PYG{k}{  contains}
+\end{Verbatim}

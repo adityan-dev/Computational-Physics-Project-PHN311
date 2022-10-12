@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{subroutine }\PYG{n}{linspace}\PYG{p}{(}\PYG{n}{from}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{to}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{array}\PYG{p}{)}
+\PYG{+w}{  }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{dp}\PYG{p}{),}\PYG{+w}{ }\PYG{k}{intent}\PYG{p}{(}\PYG{n}{in}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{from}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{to}
+\PYG{+w}{  }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{dp}\PYG{p}{),}\PYG{+w}{ }\PYG{k}{intent}\PYG{p}{(}\PYG{n}{out}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{k}{array}\PYG{p}{(:)}
+\PYG{+w}{  }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{dp}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n+nb}{range}
+\PYG{n+nb}{  }\PYG{k+kt}{integer}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{i}
+\PYG{+w}{  }\PYG{n}{n}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{size}\PYG{p}{(}\PYG{k}{array}\PYG{p}{)}
+\PYG{+w}{  }\PYG{n+nb}{range}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{to}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{from}
+\PYG{+w}{  }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{n}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{return}
+\PYG{k}{  if}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{n}\PYG{+w}{ }\PYG{o}{==}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{then}
+\PYG{k}{     array}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{from}
+\PYG{+w}{     }\PYG{k}{return}
+\PYG{k}{  end if}
+\PYG{k}{  do }\PYG{n}{i}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{n}
+\PYG{+w}{     }\PYG{k}{array}\PYG{p}{(}\PYG{n}{i}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{from}\PYG{+w}{ }\PYG{o}{+}\PYG{+w}{ }\PYG{n+nb}{range}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{i}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{/}\PYG{+w}{ }\PYG{p}{(}\PYG{n}{n}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{+w}{  }\PYG{k}{end do}
+\PYG{k}{end subroutine }\PYG{n}{linspace}
+\end{Verbatim}
