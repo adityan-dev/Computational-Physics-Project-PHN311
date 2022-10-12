@@ -1,4 +1,4 @@
-% Created 2022-10-12 Wed 19:10
+% Created 2022-10-12 Wed 19:30
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper,11pt,twoside]{article}
 \usepackage[utf8]{inputenc}
@@ -43,38 +43,26 @@
 \clearpage
 
 \section{Occilation}
-\label{sec:org5462e46}
+\label{sec:org0e153b7}
 Consider the one-dimensional motion of a particle of mass \(m\) in a time independent potential \(V(x)\).Since the energy \(E\) is conserved, one can integrate the equation of motion and obtain a solution in a closed form.
 
-\begin{equation}
+$$
 t-C = \sqrt{\frac{m}{2}}\int_{x_i}^x \frac{dx}{\sqrt{E-V(x)}}
-\end{equation}
+$$
+
 For the choice \(C=0\) , the particle is at the position \(x_i\) at the time \(t = 0\) and \(x\) refers to its position at any arbitrary time \(t\). Consider a particular case where the particle is in bound motion between twopoints \(a\) and \(b\) where \(V(x) = E\) for \(x = a, b\) and \(V(x) < E\) for \(a < x < b\). The time period of theoscillation \(T\) is given by,
 
 $$
-T = 2 \sqrt{\frac{m}{2}}\int_{a}^b \frac{dx}{\sqrt{E-V(x)}}
+T = 2 \sqrt{\frac{m}{2}}\int_a^b \frac{dx}{\sqrt{E-V(x)}}
 $$
 
 \begin{center}
-\begin{tikzpicture}
-\draw[thick] (-2,0) -- (2,0);
-\draw[thick] (-2,-1) -- (-2,1);
-\draw[thick] (2,-1) -- (2,1);
-\draw (2,-1) node [anchor=north]{$x=b$};
-\draw (-2,-1) node [anchor=north]{$x=a$};
-\draw (0,0.5) node {$V(x)<E$};
-\draw (-3,0) node {$V(x)>E$};
-\draw (3,0) node {$V(x)>E$};
-\draw (2,1) node [anchor=south]{$V(x)=E$};
-\draw (-2,1) node [anchor=south]{$V(x)=E$};
-\draw (0,-0.5) node {$A=b-a$};
-\filldraw [black] (0.5,0) circle (2pt);
-\draw[ultra thick, ->] (0.5,0) -- (1.5,0);
-\end{tikzpicture}
+\includegraphics[width=.9\linewidth]{./ltximg/potwell.png}
 \end{center}
 
+
 \subsection{First consider a particle with \(m = 1 kg\) in the potential \(V(x) = 0.5 \alpha x^2\) with \(\alpha =4 kg sec^2\). Numerically calculate the time period of oscillation and check this against the expected value. Verify that the frequency does not depend on the amplitude of oscillation.}
-\label{sec:orgbcd3b0d}
+\label{sec:orgc713963}
 
 
 \begin{center}
@@ -100,9 +88,10 @@ $$
 
 Hence Amplitude of occilation is a function of Energy.
 
-\begin{center}
-\(A(E) = b-a = \sqrt{E}\)
-\end{center}
+$$
+A(E) = b-a = \sqrt{E}
+$$
+
 
 \clearpage
 
@@ -116,7 +105,7 @@ $$
 Using integral identities,  \(T\) can be written as,
 
 $$
-T = \sqrt{2}\int_{-\frac{A}{\sqrt{2}}}^{+\frac{A}{\sqrt{2}}} \frac{dx}{\sqrt{A^2-2x^2}}
+T = \sqrt{2}\int_{- \frac{A}{\sqrt2}}^{+ \frac{A}{\sqrt2}} \frac{dx}{\sqrt{A^2-2x^2}}
 $$
 
 Let us solve the above numerically for different Amplitudes,
@@ -140,7 +129,7 @@ make occilation1
 \clearpage
 
 \section{Modules}
-\label{sec:orge5d4f08}
+\label{sec:orgb28e08b}
 
 Module \texttt{mods} consists of all subroutines, variables and procedures that are used in this report. The codeblocks below are all part of the file \texttt{mods.f90}
 
@@ -195,5 +184,5 @@ end module mods
 \clearpage
 
 \section{Makefile}
-\label{sec:orge5ba678}
+\label{sec:org801ff69}
 \end{document}

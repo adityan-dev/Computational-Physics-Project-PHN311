@@ -24,18 +24,18 @@
 * Occilation
 Consider the one-dimensional motion of a particle of mass $m$ in a time independent potential $V(x)$.Since the energy $E$ is conserved, one can integrate the equation of motion and obtain a solution in a closed form.
 
-#+begin_export latex
-\begin{equation}
+$$
 t-C = \sqrt{\frac{m}{2}}\int_{x_i}^x \frac{dx}{\sqrt{E-V(x)}}
-\end{equation}
-#+end_export
+$$
+
 For the choice $C=0$ , the particle is at the position $x_i$ at the time $t = 0$ and $x$ refers to its position at any arbitrary time $t$. Consider a particular case where the particle is in bound motion between twopoints $a$ and $b$ where $V(x) = E$ for $x = a, b$ and $V(x) < E$ for $a < x < b$. The time period of theoscillation $T$ is given by,
 
 $$
-T = 2 \sqrt{\frac{m}{2}}\int_{a}^b \frac{dx}{\sqrt{E-V(x)}}
+T = 2 \sqrt{\frac{m}{2}}\int_a^b \frac{dx}{\sqrt{E-V(x)}}
 $$
 
-#+begin_export latex
+#+header:
+#+begin_src latex :imagemagick yes :file ./ltximg/potwell.html :results file drawer :headers '("\\usepackage{tikz,pgfplots}")
 \begin{center}
 \begin{tikzpicture}
 \draw[thick] (-2,0) -- (2,0);
@@ -53,7 +53,13 @@ $$
 \draw[ultra thick, ->] (0.5,0) -- (1.5,0);
 \end{tikzpicture}
 \end{center}
-#+end_export
+#+end_src
+
+#+RESULTS:
+:results:
+[[file:./ltximg/potwell.png]]
+:end:
+
 
 ** First consider a particle with $m = 1 kg$ in the potential $V(x) = 0.5 \alpha x^2$ with $\alpha =4 kg sec^2$. Numerically calculate the time period of oscillation and check this against the expected value. Verify that the frequency does not depend on the amplitude of oscillation.
 
@@ -83,9 +89,10 @@ $$
 
 Hence Amplitude of occilation is a function of Energy.
 
-#+begin_center
-$A(E) = b-a = \sqrt{E}$
-#+end_center
+$$
+A(E) = b-a = \sqrt{E}
+$$
+
 
 #+begin_export latex
   \clearpage
@@ -101,7 +108,7 @@ $$
 Using integral identities,  $T$ can be written as,
 
 $$
-T = \sqrt{2}\int_{-\frac{A}{\sqrt{2}}}^{+\frac{A}{\sqrt{2}}} \frac{dx}{\sqrt{A^2-2x^2}}
+T = \sqrt{2}\int_{- \frac{A}{\sqrt2}}^{+ \frac{A}{\sqrt2}} \frac{dx}{\sqrt{A^2-2x^2}}
 $$
 
 Let us solve the above numerically for different Amplitudes,
