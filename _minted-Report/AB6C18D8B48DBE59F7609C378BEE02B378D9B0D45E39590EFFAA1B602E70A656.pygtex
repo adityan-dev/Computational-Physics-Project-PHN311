@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+cat ./src/cobe/cobe.dat
+\end{Verbatim}

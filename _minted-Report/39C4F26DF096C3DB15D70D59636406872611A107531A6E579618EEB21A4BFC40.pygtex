@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{program }\PYG{n}{cobe2}
+\PYG{+w}{  }\PYG{k}{use }\PYG{n}{mods}
+\PYG{+w}{  }\PYG{k}{implicit none}
+
+\PYG{k}{    }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{dp}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{phy\PYGZus{}h}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{phy\PYGZus{}c}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{phy\PYGZus{}k}
+
+\PYG{k}{end program }\PYG{n}{cobe2}
+\end{Verbatim}

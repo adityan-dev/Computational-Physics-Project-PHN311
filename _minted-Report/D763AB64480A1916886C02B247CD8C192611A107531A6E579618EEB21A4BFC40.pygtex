@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{program }\PYG{n}{occilation2}
+\PYG{+w}{  }\PYG{k}{use }\PYG{n}{mods}
+\PYG{+w}{  }\PYG{k}{implicit none}
+\PYG{k}{  }\PYG{k+kt}{integer}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{i}
+\PYG{+w}{  }\PYG{k+kt}{integer}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{parameter}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{N}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{64}
+\PYG{+w}{  }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{dp}\PYG{p}{),}\PYG{+w}{ }\PYG{k}{dimension}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{w}
+\PYG{+w}{  }\PYG{k}{call }\PYG{n}{gauss\PYGZus{}legendre}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{w}\PYG{p}{)}
+\PYG{+w}{  }\PYG{k}{print}\PYG{+w}{ }\PYG{o}{*}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nb}{sum}\PYG{p}{((}\PYG{l+m+mi}{1}\PYG{o}{/}\PYG{n}{e}\PYG{p}{)}\PYG{o}{*}\PYG{n}{w}\PYG{o}{*}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{/}\PYG{n+nb}{sqrt}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{o}{\PYGZhy{}}\PYG{n}{e}\PYG{o}{**}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{o}{*}\PYG{p}{((}\PYG{n}{x}\PYG{o}{**}\PYG{l+m+mi}{2}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)))))}
+\PYG{k}{end program }\PYG{n}{occilation2}
+\end{Verbatim}

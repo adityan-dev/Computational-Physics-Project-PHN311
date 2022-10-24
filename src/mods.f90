@@ -1,8 +1,12 @@
 module mods
   use, intrinsic :: iso_fortran_env, only: dp => real64
-  use stdlib_quadrature, only: gauss_legendre !g6
+  use stdlib_quadrature, only: gauss_legendre
   implicit none
-  contains
+
+  real(dp), parameter :: pi=3.14159265358979323846_dp
+  real(dp), parameter :: e= 2.7182818284590452353_dp
+
+contains
 
 subroutine linspace(from, to, array)
   real(dp), intent(in) :: from, to
@@ -21,11 +25,16 @@ subroutine linspace(from, to, array)
   end do
 end subroutine linspace
 
-!g6 working method
+subroutine gauss_chebyshev_1(x, w)
+  real(dp), intent(out) :: w(:), x(:)
+  integer :: n, i
+  n = size(w)
+  do i=1, n
+     x(i) = cos((pi*(2*real(i)-1))/(2*real(n)))
+     w(i) = pi/real(n)
+  end do
+end subroutine gauss_chebyshev_1
 
-!integer, parameter :: N = 6
-!real(dp), dimension(N) :: x, w
-!call gauss_legendre(x, w)
-!integ = sum(w*f(x))
+!use stdlib_quadrature, only: gauss_legendre
 
 end module mods

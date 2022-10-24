@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{module }\PYG{n}{mods}
+\PYG{+w}{  }\PYG{k}{use}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{intrinsic}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{iso\PYGZus{}fortran\PYGZus{}env}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{only}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{dp}\PYG{+w}{ }\PYG{o}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n}{real64}
+\PYG{+w}{  }\PYG{k}{use }\PYG{n}{stdlib\PYGZus{}quadrature}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{only}\PYG{p}{:}\PYG{+w}{ }\PYG{n}{gauss\PYGZus{}legendre}
+\PYG{+w}{  }\PYG{k}{implicit none}
+
+\PYG{k}{  }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{dp}\PYG{p}{),}\PYG{+w}{ }\PYG{k}{parameter}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{pi}\PYG{o}{=}\PYG{l+m+mf}{3.14159265358979323846\PYGZus{}dp}
+\PYG{+w}{  }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{dp}\PYG{p}{),}\PYG{+w}{ }\PYG{k}{parameter}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{e}\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{2.7182818284590452353\PYGZus{}dp}
+
+\PYG{+w}{  }\PYG{k}{contains}
+\end{Verbatim}

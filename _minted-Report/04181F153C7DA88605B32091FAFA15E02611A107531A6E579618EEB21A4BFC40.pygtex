@@ -1,0 +1,51 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{program }\PYG{n}{cobe2}
+\PYG{+w}{  }\PYG{k}{use }\PYG{n}{mods}
+\PYG{+w}{  }\PYG{k}{use }\PYG{n}{ral\PYGZus{}nlls\PYGZus{}double}
+\PYG{+w}{  }\PYG{k}{implicit none}
+
+\PYG{k}{  }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{dp}\PYG{p}{),}\PYG{+w}{ }\PYG{k}{parameter}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{phy\PYGZus{}h}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{6.62607015e\PYGZhy{}34\PYGZus{}dp}
+\PYG{+w}{  }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{dp}\PYG{p}{),}\PYG{+w}{ }\PYG{k}{parameter}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{phy\PYGZus{}k}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mf}{1.380649e\PYGZhy{}23\PYGZus{}dp}
+\PYG{+w}{  }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{dp}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{b}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{v}\PYG{p}{(}\PYG{l+m+mi}{200}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{I}\PYG{p}{(}\PYG{l+m+mi}{200}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{vi}\PYG{p}{(}\PYG{l+m+mi}{43}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{vbi}\PYG{p}{(}\PYG{l+m+mi}{43}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{Ii}\PYG{p}{(}\PYG{l+m+mi}{43}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{erri}\PYG{p}{(}\PYG{l+m+mi}{43}\PYG{p}{)}
+\PYG{+w}{  }\PYG{k+kt}{integer}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{j}
+
+\PYG{+w}{  }\PYG{k}{type}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{extends}\PYG{p}{(}\PYG{n}{params\PYGZus{}base\PYGZus{}type}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{params\PYGZus{}type}
+\PYG{+w}{     }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{wp}\PYG{p}{),}\PYG{+w}{ }\PYG{k}{dimension}\PYG{p}{(:),}\PYG{+w}{ }\PYG{k}{allocatable}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{v}\PYG{+w}{ }\PYG{c}{! The 43 data points v\PYGZus{}i}
+\PYG{+w}{     }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{wp}\PYG{p}{),}\PYG{+w}{ }\PYG{k}{dimension}\PYG{p}{(:),}\PYG{+w}{ }\PYG{k}{allocatable}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{I}\PYG{+w}{ }\PYG{c}{! The 43 data points I\PYGZus{}i}
+\PYG{+w}{  }\PYG{k}{end type }\PYG{n}{params\PYGZus{}type}
+
+
+
+\PYG{+w}{  }\PYG{k}{open}\PYG{p}{(}\PYG{l+m+mi}{99}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{file}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}./src/cobe/cobe.dat\PYGZdq{}}\PYG{p}{)}
+
+\PYG{+w}{  }\PYG{k}{do }\PYG{n}{j}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{43}
+\PYG{+w}{     }\PYG{k}{read}\PYG{p}{(}\PYG{l+m+mi}{99}\PYG{p}{,}\PYG{+w}{ }\PYG{o}{*}\PYG{p}{)}\PYG{+w}{ }\PYG{n}{vbi}\PYG{p}{(}\PYG{n}{j}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{Ii}\PYG{p}{(}\PYG{n}{j}\PYG{p}{),}\PYG{+w}{ }\PYG{n}{erri}\PYG{p}{(}\PYG{n}{j}\PYG{p}{)}
+\PYG{+w}{  }\PYG{k}{end do}
+
+\PYG{k}{  }\PYG{n}{vi}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{3}\PYG{l+m+mf}{0.\PYGZus{}dp}\PYG{o}{*}\PYG{n}{vbi}
+
+\PYG{+w}{  }\PYG{k}{close}\PYG{p}{(}\PYG{l+m+mi}{99}\PYG{p}{)}
+\PYG{k}{contains}
+\PYG{+w}{  }\PYG{c}{! Calculate r\PYGZus{}i(b; v\PYGZus{}i, I\PYGZus{}i)}
+\PYG{+w}{  }\PYG{k}{subroutine }\PYG{n}{eval\PYGZus{}r}\PYG{p}{(}\PYG{n}{status}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{n}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{m}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{r}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{params}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k+kt}{integer}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{intent}\PYG{p}{(}\PYG{n}{out}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{statu}\PYG{+w}{   }\PYG{n}{s}
+\PYG{+w}{    }\PYG{k+kt}{integer}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{intent}\PYG{p}{(}\PYG{n}{in}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{n}
+\PYG{+w}{    }\PYG{k+kt}{integer}\PYG{p}{,}\PYG{+w}{ }\PYG{k}{intent}\PYG{p}{(}\PYG{n}{in}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{m}
+\PYG{+w}{    }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{wp}\PYG{p}{),}\PYG{+w}{ }\PYG{k}{dimension}\PYG{p}{(}\PYG{o}{*}\PYG{p}{),}\PYG{+w}{ }\PYG{k}{intent}\PYG{p}{(}\PYG{n}{in}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{x}
+\PYG{+w}{    }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{wp}\PYG{p}{),}\PYG{+w}{ }\PYG{k}{dimension}\PYG{p}{(}\PYG{o}{*}\PYG{p}{),}\PYG{+w}{ }\PYG{k}{intent}\PYG{p}{(}\PYG{n}{out}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{r}
+\PYG{+w}{    }\PYG{k}{class}\PYG{p}{(}\PYG{n}{params\PYGZus{}base\PYGZus{}type}\PYG{p}{),}\PYG{+w}{ }\PYG{k}{intent}\PYG{p}{(}\PYG{n}{inout}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{params}
+
+\PYG{+w}{    }\PYG{k+kt}{real}\PYG{p}{(}\PYG{n}{wp}\PYG{p}{)}\PYG{+w}{ }\PYG{k+kd}{::}\PYG{+w}{ }\PYG{n}{x1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{x2}
+
+\PYG{+w}{    }\PYG{n}{x1}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{)}
+\PYG{+w}{    }\PYG{n}{x2}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{x}\PYG{p}{(}\PYG{n}{n}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{select type}\PYG{p}{(}\PYG{n}{params}\PYG{p}{)}
+\PYG{+w}{    }\PYG{k}{type is}\PYG{p}{(}\PYG{n}{params\PYGZus{}type}\PYG{p}{)}
+\PYG{+w}{       }\PYG{n}{r}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{:}\PYG{n}{m}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n}{x1}\PYG{+w}{ }\PYG{o}{*}\PYG{+w}{ }\PYG{n+nb}{exp}\PYG{p}{(}\PYG{n}{x2}\PYG{o}{*}\PYG{n}{params}\PYG{p}{\PYGZpc{}}\PYG{n}{t}\PYG{p}{(:))}\PYG{+w}{ }\PYG{o}{\PYGZhy{}}\PYG{+w}{ }\PYG{n}{params}\PYG{p}{\PYGZpc{}}\PYG{n}{y}\PYG{p}{(:)}
+\PYG{+w}{    }\PYG{k}{end select}
+
+\PYG{k}{    }\PYG{n}{status}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{+w}{ }\PYG{c}{! Success}
+\PYG{+w}{  }\PYG{k}{end subroutine }\PYG{n}{eval\PYGZus{}r}
+
+\PYG{k}{end program }\PYG{n}{cobe2}
+\end{Verbatim}
