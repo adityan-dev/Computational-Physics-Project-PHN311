@@ -270,7 +270,7 @@ Yes, the given data has a shape similar to the black body spectrum first explain
 
 ** Use these data to deduce the temperature T of the cosmic microwave background radiation.
 $$
-I =  \frac{0.0014745 \nu^3}{e^{b\nu}-1} \quad in \quad \frac{MJy}{sr}
+I =  \frac{0.0014745 \nu^3}{{e^{b\nu}}-1} \quad in \quad \frac{MJy}{sr}
 $$
 
 $$
@@ -295,7 +295,7 @@ $$
 Let the Initial Guess for $b$ be
 $b = 0.048  \implies T \approx 1K$
 
-#+begin_src jupyter-python :tangle ./app/cobe2.py :session py :exports both
+#+begin_src python :tangle ./app/cobe2.py :session :exports both :results value drawer
 import numpy as np
 from scipy.optimize import least_squares
 import pandas as pd
@@ -311,14 +311,14 @@ def r(b, vi, Ii):
     return ((0.0014745*pow(vi,3))/(np.exp(b*vi)-1) - Ii)**2
 
 b = least_squares(r, 0.048, args=(vi, Ii))
-print(b.x)
+b.x
 #+end_src
 
 #+RESULTS:
-: [ 68.1  81.6  95.4 108.9 122.4 136.2 149.7 163.5 177.  190.5 204.3 217.8
-:  231.3 245.1 258.6 272.4 285.9 299.4 313.2 326.7 340.2 354.  367.5 381.3
-:  394.8 408.3 422.1 435.6 449.1 462.9 476.4 490.2 503.7 517.2 531.  544.5
-:  558.3 571.8 585.3 599.1 612.6 626.1 639.9]
+:results:
+[0.01760962]
+:end:
+
 
 $$
 b = 0.01760962  \implies T \approx 2.73K
