@@ -456,11 +456,11 @@ end subroutine linspace
 *** N-point Gauss Chebyshev Quadrature of 1st kind.
 
 $$
-\int _{-1}^{+1}{\frac {f(x)}{\sqrt {1-x^{2}}}}\,dx\approx \sum _{i=1}^{n}w_{i}f(x_{i})}
+\int _{-1}^{+1}{\frac {f(x)}{\sqrt {1-x^{2}}}}\,dx\approx \sum _{i=1}^{n}w_{i}f(x_{i})
 $$
 
 $$
-x_{i}= \cos \left({\frac {2i-1}{2n}}\pi \right) \quad w_{i}={\frac {\pi }{n}}
+x_{i}= \cos \left({\frac {2i-1}{2n}}\pi \right) \quad w_{i}=\frac {\pi }{n}
 $$
 
 #+begin_src f90 :tangle ./src/mods.f90 :exports code

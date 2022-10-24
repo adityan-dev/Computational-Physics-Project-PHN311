@@ -1,4 +1,4 @@
-% Created 2022-10-24 Mon 19:34
+% Created 2022-10-24 Mon 22:09
 % Intended LaTeX compiler: pdflatex
 \documentclass[a4paper,11pt,twoside]{article}
 \usepackage[utf8]{inputenc}
@@ -45,7 +45,7 @@
 \clearpage
 
 \section{Oscillation}
-\label{sec:org8ab8d5c}
+\label{sec:orgcc67047}
 Consider the one-dimensional motion of a particle of mass \(m\) in a time independent potential \(V(x)\).Since the energy \(E\) is conserved, one can integrate the equation of motion and obtain a solution in a closed form.
 
 $$
@@ -77,7 +77,7 @@ $$
 \end{center}
 
 \subsection{First consider a particle with \(m = 1 kg\) in the potential \(V_1(x) = 0.5 \alpha x^2\) with \(\alpha =4 kg sec^2\). Numerically calculate the time period of oscillation and check this against the expected value. Verify that the frequency does not depend on the amplitude of oscillation.}
-\label{sec:org67e05d3}
+\label{sec:org85e2e80}
 
 
 \begin{center}
@@ -151,7 +151,7 @@ The above integral \(T = 3.141592653589793 \approx \pi \neq T(E,A)\) . Hence the
 
 
 \subsection{Next consider a potential \(V_2(x) = e^{0.5αx^2 } -1\). Numerically verify that for small amplitude oscillations you recover the same results as the simple harmonic oscillator.}
-\label{sec:org93ec037}
+\label{sec:orgbea0e7d}
 
 \begin{center}
 \begin{tikzpicture}
@@ -243,7 +243,7 @@ Hence for Oscillation of small amplitudes, we get the same results as simple har
 \clearpage
 
 \section{Black Body Spectrum}
-\label{sec:orgd6d43ce}
+\label{sec:org05272dd}
 Quantum mechanics began with Planck’s fit to the spectrum of black body radiation:
 
 $$
@@ -274,7 +274,7 @@ cat ./src/cobe/cobe.dat
 \end{center}
 
 \subsection{Plot the COBE data and see if it has a shape similar to the black body spectrum first explained by Planck.}
-\label{sec:org23973c9}
+\label{sec:orgf695b34}
 
 
 \begin{center}
@@ -291,9 +291,9 @@ Yes, the given data has a shape similar to the black body spectrum first explain
 
 
 \subsection{Use these data to deduce the temperature T of the cosmic microwave background radiation.}
-\label{sec:org2584fd2}
+\label{sec:org9847d67}
 $$
-I =  \frac{0.0014745 \nu^3}{e^{b\nu}-1} \quad in \quad \frac{MJy}{sr}
+I =  \frac{0.0014745 \nu^3}{{e^{b\nu}}-1} \quad in \quad \frac{MJy}{sr}
 $$
 
 $$
@@ -332,12 +332,10 @@ def r(b, vi, Ii):
     return ((0.0014745*pow(vi,3))/(np.exp(b*vi)-1) - Ii)**2
 
 b = least_squares(r, 0.048, args=(vi, Ii))
-print(b.x)
+b.x
 \end{minted}
 
-\begin{verbatim}
 [0.01760962]
-\end{verbatim}
 
 
 $$
@@ -346,7 +344,7 @@ $$
 
 
 \subsection{Assess the accuracy of the fit by doing a Pearson's \(\chi^2\) (chi-squared) analysis.}
-\label{sec:org3d68c8f}
+\label{sec:org43ae4db}
 
 
 \begin{minted}[breaklines=true,breakanywhere=true]{f90}
@@ -435,10 +433,10 @@ Hence it is a good fit
 \clearpage
 
 \section{Modules}
-\label{sec:orgcfecace}
+\label{sec:orge7d1fb8}
 
 \subsection{Module \texttt{mods} consists of all subroutines, variables and procedures that are used in this report. The codeblocks below are all part of the file \texttt{mods.f90}}
-\label{sec:orgbacc95e}
+\label{sec:orge98a5fa}
 
 \begin{minted}[breaklines=true,breakanywhere=true]{f90}
 module mods
@@ -451,15 +449,15 @@ module mods
 
 \end{minted}
 \subsection{Interfaces}
-\label{sec:orgd758085}
+\label{sec:org1b6f9f0}
 
 \begin{minted}[breaklines=true,breakanywhere=true]{f90}
 contains
 \end{minted}
 \subsection{Routines for Array Manipulation}
-\label{sec:orgdc7da08}
+\label{sec:org77fe6d6}
 \subsubsection{Linspace Subroutine for creating an array(sequence) with the equal step value.}
-\label{sec:org5426f0b}
+\label{sec:org9333989}
 
 \begin{minted}[breaklines=true,breakanywhere=true]{f90}
 subroutine linspace(from, to, array)
@@ -481,16 +479,16 @@ end subroutine linspace
 \end{minted}
 
 \subsection{Routines for Numerical Integration}
-\label{sec:orgac11445}
+\label{sec:org097f986}
 \subsubsection{N-point Gauss Chebyshev Quadrature of 1st kind.}
-\label{sec:orgba43c3a}
+\label{sec:org18f1106}
 
 $$
-\int _{-1}^{+1}{\frac {f(x)}{\sqrt {1-x^{2}}}}\,dx\approx \sum _{i=1}^{n}w_{i}f(x_{i})}
+\int _{-1}^{+1}{\frac {f(x)}{\sqrt {1-x^{2}}}}\,dx\approx \sum _{i=1}^{n}w_{i}f(x_{i})
 $$
 
 $$
-x_{i}= \cos \left({\frac {2i-1}{2n}}\pi \right) \quad w_{i}={\frac {\pi }{n}}
+x_{i}= \cos \left({\frac {2i-1}{2n}}\pi \right) \quad w_{i}=\frac {\pi }{n}
 $$
 
 \begin{minted}[breaklines=true,breakanywhere=true]{f90}
@@ -506,10 +504,10 @@ end subroutine gauss_chebyshev_1
 \end{minted}
 
 \subsubsection{N-point Gauss Legendre Quadrature of 1st kind.}
-\label{sec:org0997182}
+\label{sec:org62b5f27}
 
 $$
-\int _{-1}^{+1}{f(x)}\,dx\approx \sum _{i=1}^{n}w_{i}f(x_{i})}
+\int _{-1}^{+1}{f(x)}\,dx\approx \sum _{i=1}^{n}w_{i}f(x_{i})
 $$
 
 $$
@@ -521,10 +519,10 @@ $$
 \end{minted}
 
 \subsection{Routines for Optimization of Non Linear Equation}
-\label{sec:orgdcc875c}
+\label{sec:org58523f3}
 Using SCIPY
 \subsection{End of module \texttt{mods}}
-\label{sec:org5383ca6}
+\label{sec:org48b10e5}
 
 \begin{minted}[breaklines=true,breakanywhere=true]{f90}
 end module mods

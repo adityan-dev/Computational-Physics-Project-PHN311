@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{numpy} \PYG{k}{as} \PYG{n+nn}{np}
+\PYG{k+kn}{from} \PYG{n+nn}{scipy.optimize} \PYG{k+kn}{import} \PYG{n}{least\PYGZus{}squares}
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{import} \PYG{n+nn}{warnings}
+\PYG{n}{warnings}\PYG{o}{.}\PYG{n}{filterwarnings}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}ignore\PYGZdq{}}\PYG{p}{)}
+
+\PYG{n}{data} \PYG{o}{=} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{read\PYGZus{}csv}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}src/cobe/cobeplot.csv\PYGZdq{}}\PYG{p}{,} \PYG{n}{header}\PYG{o}{=}\PYG{k+kc}{None}\PYG{p}{,} \PYG{n}{delim\PYGZus{}whitespace}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+\PYG{n}{vbi} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{asarray}\PYG{p}{(}\PYG{n}{data}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{])}
+\PYG{n}{Ii} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{asarray}\PYG{p}{(}\PYG{n}{data}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{])}
+\PYG{n}{vi} \PYG{o}{=} \PYG{l+m+mi}{30} \PYG{o}{*} \PYG{n}{vbi}
+
+\PYG{k}{def} \PYG{n+nf}{r}\PYG{p}{(}\PYG{n}{b}\PYG{p}{,} \PYG{n}{vi}\PYG{p}{,} \PYG{n}{Ii}\PYG{p}{):}
+    \PYG{k}{return} \PYG{p}{((}\PYG{l+m+mf}{0.0014745}\PYG{o}{*}\PYG{n+nb}{pow}\PYG{p}{(}\PYG{n}{vi}\PYG{p}{,}\PYG{l+m+mi}{3}\PYG{p}{))}\PYG{o}{/}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{exp}\PYG{p}{(}\PYG{n}{b}\PYG{o}{*}\PYG{n}{vi}\PYG{p}{)}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{Ii}\PYG{p}{)}\PYG{o}{**}\PYG{l+m+mi}{2}
+
+\PYG{n}{b} \PYG{o}{=} \PYG{n}{least\PYGZus{}squares}\PYG{p}{(}\PYG{n}{r}\PYG{p}{,} \PYG{l+m+mf}{0.048}\PYG{p}{,} \PYG{n}{args}\PYG{o}{=}\PYG{p}{(}\PYG{n}{vi}\PYG{p}{,} \PYG{n}{Ii}\PYG{p}{))}
+\PYG{n}{b}\PYG{o}{.}\PYG{n}{x}
+\end{Verbatim}

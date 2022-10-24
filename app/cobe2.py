@@ -13,4 +13,4 @@ def r(b, vi, Ii):
     return ((0.0014745*pow(vi,3))/(np.exp(b*vi)-1) - Ii)**2
 
 b = least_squares(r, 0.048, args=(vi, Ii))
-print(b.x)
+b.x
